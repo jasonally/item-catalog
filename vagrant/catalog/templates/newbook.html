@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+  {% block title %}New Book{% endblock %}
+
+    {% block content %}
+      <div class="row">
+        <div class="col-md-12">
+          <h2>New Book</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form action="{{url_for('books.new_book',
+          reading_list_id=reading_list_id)}}"
+          method="POST">
+            <p>Title:</p>
+            <p class="error">{{name_error}}</p>
+            <input type="text" name="name"
+            placeholder="Enter a title" value="{{name}}">
+            <br>
+            <br>
+            <p>Category:</p>
+            <p class="error">{{category_error}}</p>
+            <input type="radio" name="category" value="Fiction"> Fiction
+            <input type="radio" id="margin-left" name="category"
+            value="Non-Fiction"> Non-Fiction
+            <br>
+            <br>
+            <p>Author:</p>
+            <p class="error">{{author_error}}</p>
+            <input type="text" name="author_first_name"
+            placeholder="First name" value="{{author_first_name}}">
+            <br>
+            <input type="text" name="author_last_name"
+            placeholder="Last name" value="{{author_last_name}}">
+            <br>
+            <br>
+            <p>Description:</p>
+            <p class="error">{{description_error}}</p>
+            <textarea name="description"
+            placeholder="Enter a description">{{description}}</textarea>
+            <br>
+            <br>
+            <p>Amazon listing:</p>
+            <p class="error">{{website_error}}</p>
+            <input type="text" name="website"
+            placeholder="Enter an Amazon listing URL" value="{{website}}">
+            <br>
+            <br>
+            <input type="submit" value="Create">
+          </form>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <a href="{{url_for('books.show_book',
+          reading_list_id=reading_list_id)}}">Cancel</a>
+        </div>
+      </div>
+    {% endblock %}

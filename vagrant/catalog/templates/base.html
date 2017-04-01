@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+    maximum-scale=1" />
+    <link rel=stylesheet type=text/css href="{{url_for('static', filename='bootstrap.theme.min.css')}}">
+    <link rel=stylesheet type=text/css href="{{url_for('static', filename='bootstrap.min.css')}}">
+    <link rel=stylesheet type=text/css href="{{url_for('static', filename='main.css')}}">
+    <title>{% block title %}{% endblock %} - Udacity FSND Item Catalog</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      {% if username %}
+        <div class="row">
+          <div class="col-md-2 pull-right">
+            <img src="{{picture}}" id="login-picture" alt="user picture">
+          </div>
+          <div class="col-md-6 pull-right login-box">
+            <p>You are logged in as {{username}}</p>
+            <a href="{{url_for('auth.logout')}}">Log out</a>
+          </div>
+        </div>
+      {% else %}
+        <div class="row">
+          <div class="col-md-6 pull-right login-box">
+            <a href="{{url_for('auth.login')}}">Log in</a>
+          </div>
+        </div>
+      {% endif %}
+      <div class="row">
+        <div class="col-md-12" id="header">
+          <h1>Udacity FSND Item Catalog</h1>
+        </div>
+      </div>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

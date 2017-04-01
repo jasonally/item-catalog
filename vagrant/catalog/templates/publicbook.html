@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+  {% block title %}{{reading_list.name}}{% endblock %}
+
+    {% block content %}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="row">
+            <div class="col-md-12">
+              <table>
+                {% for message in messages %}
+                  <tr>
+                    <td class="message"><strong>{{message}}</strong></td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <div class="row">
+        <div class="col-md-12 center-text">
+          <h2>{{reading_list.name}}</h2>
+          <h3>{{reading_list.description}}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" id="created-by">
+          <h4>Created by {{creator.name}}</h4>
+          <img src="{{creator.picture}}" alt="creator picture"
+          id ="creator-picture">
+        </div>
+      </div>
+
+      {% if books %}
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Books</h3>
+          </div>
+        </div>
+        {% for book in books %}
+        <div class="row">
+          <div class="col-md-12">
+            <table>
+              <tr>
+                <td class="book-title">{{book.name}}</td>
+              </tr>
+              <tr>
+                <td>By {{book.author_first_name}} {{book.author_last_name}}</td>
+              </tr>
+              <tr>
+                <td>{{book.category}}</td>
+              </tr>
+              <tr>
+                <td>{{book.description}}</td>
+              </tr>
+              <tr>
+                <td><a href="{{book.website}}" target="_blank">Amazon listing
+                </a></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br>
+        {% endfor %}
+      {% else %}
+        <div class="row">
+          <div class="col-md-12">
+            <p>There are currently no books in this reading list.</p>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="row">
+        <div class="col-md-12">
+          <p><a href="{{url_for('reading_lists.show_reading_lists')}}">
+          Back to reading lists</a></p>
+        </div>
+      </div>
+    {% endblock %}

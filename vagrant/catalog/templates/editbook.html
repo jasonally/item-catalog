@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+  {% block title %}{{book.name}}{% endblock %}
+
+    {% block content %}
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Edit Book</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form action="{{url_for('books.edit_book',
+          reading_list_id=reading_list_id, book_id=book_id)}}" method="POST">
+            <p>Title:</p>
+            <input type="text" size="30" name="name"
+            placeholder="{{book.name}}">
+            <br>
+            <br>
+            <p>Category:</p>
+            <input type="radio" name="category" value="Fiction"
+            {% if book.category=="Fiction" %}checked="checked"{% endif %}>
+            Fiction
+            <input type="radio" id="margin-left" name="category"
+            value="Non-Fiction"
+            {% if book.category=="Non-Fiction" %}checked="checked"{% endif %}>
+            Non-Fiction
+            <br>
+            <br>
+            <p>Author:</p>
+            <input type="text" size="30" name="author_first_name"
+            placeholder="{{book.author_first_name}}">
+            <br>
+            <input type="text" size="30" name="author_last_name"
+            placeholder="{{book.author_last_name}}">
+            <br>
+            <br>
+            <p>Description:</p>
+            <textarea name="description">{{book.description}}</textarea>
+            <br>
+            <br>
+            <p>Amazon listing:</p>
+            <p class="error">{{website_error}}</p>
+            <input type="text" size="30" name="website"
+                placeholder="{{book.website}}">
+            <br>
+            <br>
+            <input type="submit" value="Edit">
+          </form>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <a href="{{url_for('books.show_book',
+          reading_list_id=reading_list_id)}}">Cancel</a>
+        </div>
+      </div>
+    {% endblock %}

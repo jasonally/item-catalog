@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+  {% block title %}{{book.name}}{% endblock %}
+
+    {% block content %}
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Are you sure you want to delete {{book.name}}?</h2>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <form action="{{url_for('books.delete_book',
+        reading_list_id=reading_list_id, book_id=book_id)}}" method="POST">
+            <input type="submit", value="Delete">
+          </form>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <a href="{{url_for('books.show_book',
+          reading_list_id=reading_list_id)}}">Cancel</a>
+        </div>
+      </div>
+    {% endblock %}

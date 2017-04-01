@@ -1,0 +1,121 @@
+body {
+  background-color: lightgrey;
+  color: #333;
+  font-size: 14px;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 10px;
+  position: relative;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type=text] {
+  font-size: 14px;
+  padding: 2px;
+  width: 400px;
+  max-width:100%;
+}
+
+input[type=submit] {
+  font-size: 14px;
+}
+
+textarea {
+  font-size: 14px;
+  height: 400px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.container-fluid {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.book-title {
+  font-size: 16px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
+
+.login-box {
+  font-size: 13px;
+  line-height: 75%;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.message {
+  color: green;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.options {
+  font-size: 12px;
+}
+
+.reading-list-title {
+  font-size: 16px;
+}
+
+#created-by {
+  text-align: center;
+  padding: 5px;
+}
+
+#creator-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+}
+
+#header {
+  text-align: center;
+}
+
+#login-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+}
+
+#margin-left {
+  margin-left: 10px;
+}

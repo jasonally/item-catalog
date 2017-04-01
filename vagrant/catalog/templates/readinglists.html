@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+  {% block title %}Admin Index{% endblock %}
+
+    {% block content %}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="row">
+            <div class="col-md-12">
+              <table>
+                {% for message in messages %}
+                  <tr>
+                    <td class="message"><strong>{{message}}</strong></td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Reading Lists</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <a href="{{url_for('reading_lists.new_reading_list')}}">
+          Create a new reading list</a>
+        </div>
+      </div>
+
+      <br>
+
+      {% if reading_lists %}
+        {% for reading_list in reading_lists %}
+          <div class="row">
+            <div class="col-md-12">
+              <table>
+                <tr>
+                  <td class="reading-list-title">
+                    <a href="{{url_for('books.show_book',
+                    reading_list_id=reading_list.id)}}">{{reading_list.name}}
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{reading_list.description}}</td>
+                </tr>
+                <tr class="options">
+                  <td><a href="{{url_for('reading_lists.edit_reading_list',
+                  reading_list_id=reading_list.id)}}">Edit List</a></td>
+                </tr>
+                <tr class="options">
+                  <td><a href="{{url_for('reading_lists.delete_reading_list',
+                  reading_list_id=reading_list.id)}}">Delete List</a></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br>
+        {% endfor %}
+      {% else %}
+        <div class="row">
+          <div class="col-md-12">
+            <p>There are currently no reading lists. Why don't you add one?</p>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
