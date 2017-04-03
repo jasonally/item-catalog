@@ -103,7 +103,11 @@ def edit_book(reading_list_id, book_id):
     Amazon website."""
     edited_book = session.query(Book).filter_by(id=book_id).one()
     if edited_book.user_id != login_session['user_id']:
-        return """<script>function myFunction() {alert("You're not authorized to edit this book. Please create your own reading list and books to edit them.");} setTimeout(function() {window.location.href = '/reading_list/%s/books';});</script><body onload='myFunction()'>""" % reading_list_id
+        return """<script>function myFunction() {alert("You're not authorized \
+to edit this book. Please create your own reading list and book entries to \
+edit them.");} setTimeout(function() {window.location.href = \
+'/reading_list/%s/books';}); \
+</script><body onload='myFunction()'>""" % reading_list_id
     if request.method == 'POST':
         if request.form['website']:
             if not valid_amazon_url(request.form['website']):
@@ -145,7 +149,11 @@ def delete_book(reading_list_id, book_id):
     user who created the reading list can delete books from it."""
     deleted_book = session.query(Book).filter_by(id=book_id).one()
     if deleted_book.user_id != login_session['user_id']:
-        return """<script>function myFunction() {alert("You're not authorized to delete this book. Please create your own reading list and books to delete them.");} setTimeout(function() {window.location.href = '/reading_list/%s/books';});</script><body onload='myFunction()'>""" % reading_list_id
+        return """<script>function myFunction() {alert("You're not authorized \
+to delete this book. Please create your own reading list and book entries to \
+delete them.");} setTimeout(function() {window.location.href = \
+'/reading_list/%s/books';}); \
+</script><body onload='myFunction()'>""" % reading_list_id
     if request.method == 'POST':
         session.delete(deleted_book)
         session.commit()

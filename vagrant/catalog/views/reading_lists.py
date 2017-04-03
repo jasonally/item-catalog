@@ -54,7 +54,10 @@ def edit_reading_list(reading_list_id):
     a given reading list can edit that list."""
     edited_reading_list = session.query(ReadingList).filter_by(id=reading_list_id).one()
     if edited_reading_list.user_id != login_session['user_id']:
-        return """<script>function myFunction() {alert("You're not authorized to edit this reading list. Please create your own reading list to edit it.");} setTimeout(function() {window.location.href = '/reading_lists';});</script><body onload='myFunction()'>"""
+        return """<script>function myFunction() {alert("You're not authorized \
+to edit this reading list. Please create your own reading list to edit \
+it.");} setTimeout(function() {window.location.href = '/reading_lists';}); \
+</script><body onload='myFunction()'>"""
     if request.method == 'POST':
         if request.form['name']:
             edited_reading_list.name = request.form['name']
@@ -78,7 +81,10 @@ def delete_reading_list(reading_list_id):
     a given reading list can delete that list."""
     deleted_reading_list = session.query(ReadingList).filter_by(id=reading_list_id).one()
     if deleted_reading_list.user_id != login_session['user_id']:
-        return """<script>function myFunction() {alert("You're not authorized to delete this reading list. Please create your own reading list to edit it.");} setTimeout(function() {window.location.href = '/reading_lists';});</script><body onload='myFunction()'>"""
+        return """<script>function myFunction() {alert("You're not authorized \
+to delete this reading list. Please create your own reading list to delete \
+it.");} setTimeout(function() {window.location.href = '/reading_lists';}); \
+</script><body onload='myFunction()'>"""
     if request.method == 'POST':
         session.delete(deleted_reading_list)
         session.commit()
