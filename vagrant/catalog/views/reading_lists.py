@@ -22,10 +22,9 @@ def show_reading_lists():
             reading_lists=reading_lists)
 
 @mod.route('/reading_list/new', methods=['GET', 'POST'])
+@login_required
 def new_reading_list():
     """Renders template for creating a new reading list."""
-    if 'username' not in login_session:
-        return redirect('/login')
     if request.method == 'POST':
         if request.form['name'] and request.form['description']:
             created_reading_list = ReadingList(name=request.form['name'],
@@ -49,12 +48,11 @@ def new_reading_list():
             picture=login_session['picture'])
 
 @mod.route('/reading_list/<int:reading_list_id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_reading_list(reading_list_id):
     """Renders template for editing a reading list. Only the user who created
     a given reading list can edit that list."""
     edited_reading_list = session.query(ReadingList).filter_by(id=reading_list_id).one()
-    if 'username' not in login_session:
-        return redirect('/login')
     if edited_reading_list.user_id != login_session['user_id']:
         return """<script>function myFunction() {alert("You're not authorized to edit this reading list. Please create your own reading list to edit it.");} setTimeout(function() {window.location.href = '/reading_lists';});</script><body onload='myFunction()'>"""
     if request.method == 'POST':
@@ -74,12 +72,11 @@ def edit_reading_list(reading_list_id):
 
 @mod.route('/reading_list/<int:reading_list_id>/delete',
     methods=['GET', 'POST'])
+@login_required
 def delete_reading_list(reading_list_id):
     """Renders template for deleting a reading list. Only the user who created
     a given reading list can delete that list."""
     deleted_reading_list = session.query(ReadingList).filter_by(id=reading_list_id).one()
-    if 'username' not in login_session:
-        return redirect('/login')
     if deleted_reading_list.user_id != login_session['user_id']:
         return """<script>function myFunction() {alert("You're not authorized to delete this reading list. Please create your own reading list to edit it.");} setTimeout(function() {window.location.href = '/reading_lists';});</script><body onload='myFunction()'>"""
     if request.method == 'POST':
