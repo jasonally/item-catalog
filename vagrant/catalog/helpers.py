@@ -1,5 +1,6 @@
 # Flask basics
 from flask import Flask, Blueprint, flash, jsonify, redirect, render_template, request, url_for
+from flask import session as login_session
 
 # SQLAlchemy
 from sqlalchemy import create_engine
@@ -9,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, ReadingList, Book
 
 # Miscellaneous
-from flask import session as login_session
+from functools import wraps
 import random, string
 
 # Authentication
@@ -25,6 +26,14 @@ engine = create_engine('sqlite:///readinglistwithusers.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in login_session:
+            return redirect('/login')
+        return f(*args, **kwargs)
+    return decorated_function
 
 def create_user(login_session):
     new_user = User(name=login_session['username'], email=login_session[
