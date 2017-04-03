@@ -36,13 +36,12 @@ def show_book(reading_list_id):
 
 @mod.route('/reading_list/<int:reading_list_id>/books/new',
     methods=['GET', 'POST'])
+@login_required
 def new_book(reading_list_id):
     """Renders template for adding a book to a given reading list. Only the
     user who created the reading list can add books to it. Template also has
     error validation to ensure entries are complete and contain an Amazon URL.
     """
-    if 'username' not in login_session:
-        return redirect('/login')
     has_error = False
     params = dict(reading_list_id=reading_list_id)
     if request.method == 'POST':
@@ -96,14 +95,13 @@ def new_book(reading_list_id):
 
 @mod.route('/reading_list/<int:reading_list_id>/books/<int:book_id>/edit',
     methods=['GET', 'POST'])
+@login_required
 def edit_book(reading_list_id, book_id):
     """Renders template for editing a book in given reading list. Only the
     user who created the reading list can edit books. If the user changes the
     Amazon URL, there's validation to make sure the new URL is also on an
     Amazon website."""
     edited_book = session.query(Book).filter_by(id=book_id).one()
-    if 'username' not in login_session:
-        return redirect('/login')
     if edited_book.user_id != login_session['user_id']:
         return """<script>function myFunction() {alert("You're not authorized to edit this book. Please create your own reading list and books to edit them.");} setTimeout(function() {window.location.href = '/reading_list/%s/books';});</script><body onload='myFunction()'>""" % reading_list_id
     if request.method == 'POST':
@@ -141,12 +139,11 @@ def edit_book(reading_list_id, book_id):
 
 @mod.route('/reading_list/<int:reading_list_id>/books/<int:book_id>/delete',
     methods=['GET', 'POST'])
+@login_required
 def delete_book(reading_list_id, book_id):
     """Renders template for deleting a book in a given reading list. Only the
     user who created the reading list can delete books from it."""
     deleted_book = session.query(Book).filter_by(id=book_id).one()
-    if 'username' not in login_session:
-        return redirect('/login')
     if deleted_book.user_id != login_session['user_id']:
         return """<script>function myFunction() {alert("You're not authorized to delete this book. Please create your own reading list and books to delete them.");} setTimeout(function() {window.location.href = '/reading_list/%s/books';});</script><body onload='myFunction()'>""" % reading_list_id
     if request.method == 'POST':
