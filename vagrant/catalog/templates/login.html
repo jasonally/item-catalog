@@ -74,14 +74,15 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <script> window.fbAsyncInit = function() {
-            FB.init({
-              appId       : '1268892053207021',
-              cookie      : true,
-              xfbml       : true,
-              version     : 'v2.8'
-              });
-            };
+          <script>
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId       : '1268892053207021',
+                cookie      : true,
+                xfbml       : true,
+                version     : 'v2.8'
+                });
+              };
 
             (function(d, s, id) {
               var js, fjs = d.getElementsByTagName(s)[0];
@@ -93,10 +94,10 @@
 
             function sendTokenToServer() {
               var access_token = FB.getAuthResponse()['accessToken'];
-              console.log(access_token)
-              console.log('Welcome! Fetching your information...');
+              // console.log(access_token)
+              // console.log('Welcome! Fetching your information...');
               FB.api('/me', function(response) {
-                  console.log('Successful login for: ' + response.name);
+                  // console.log('Successful login for: ' + response.name);
                   $.ajax({
                       type: 'POST',
                       url: '/fbconnect?state={{STATE}}',
