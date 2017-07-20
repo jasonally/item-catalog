@@ -1,7 +1,7 @@
 # Project: Item Catalog
 
 ### About
-This project uses concepts from Udacity's Full Stack Foundations and Authentication and Authorization courses to build an item catalog web application. The app catalogs reading lists and books associated with each list. Users can log into the app using Google or Facebook account authorization, create reading lists and add books to the reading lists they create. In addition, the app also features JSON endpoints which allows users to access data in the catalog in a serialized format. The app uses the Flask development framework, SQLAlchemy, and Google and Facebook authorization APIs.
+This project uses concepts from Udacity's [Full Stack Foundations](https://www.udacity.com/course/full-stack-foundations--ud088) and [Authentication and Authorization](https://www.udacity.com/course/authentication-authorization-oauth--ud330) courses to build an item catalog web application. The app catalogs reading lists and books associated with each list. Users can log into the app using Google or Facebook account authorization, create reading lists and add books to the reading lists they create. In addition, the app also features JSON endpoints which allows users to access data in the catalog in a serialized format. The app uses the [Flask](http://flask.pocoo.org/) development framework, [SQLAlchemy](https://www.sqlalchemy.org/), and [Google](https://developers.google.com/identity/) and [Facebook](https://developers.facebook.com/docs/facebook-login) authorization APIs.
 
 ### Directory Contents
 The following contents are inside the catalog directory, which is within the vagrant directory:
@@ -20,7 +20,7 @@ The following contents are inside the catalog directory, which is within the vag
 13. `__init__.py` - Imports the Flask Blueprints and initializes the app.
 
 ### How to Run
-1. Install Vagrant and VirtualBox. If you need help installing Vagrant and VirtualBox, you can find details here: https://udacity.atlassian.net/wiki/display/BENDH/Vagrant+VM+Installation
+1. Install Vagrant and VirtualBox. If you need help installing Vagrant and VirtualBox, you can find details [here](https://udacity.atlassian.net/wiki/display/BENDH/Vagrant+VM+Installation).
 2. Clone or download this repo to your computer.
 3. Launch the Vagrant virtual machine in Terminal (vagrant up and vagrant ssh).
 4. Navigate into the catalog directory and run the following command:
